@@ -1,4 +1,4 @@
-defmodule AuthManager.MixProject do
+defmodule AuthManagerCore.MixProject do
   use Mix.Project
 
   @version "0.1.0"
@@ -6,7 +6,7 @@ defmodule AuthManager.MixProject do
 
   def project do
     [
-      app: :auth_manager,
+      app: :auth_manager_core,
       version: @version,
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
@@ -23,7 +23,7 @@ defmodule AuthManager.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {AuthManager.Application, []}
+      mod: {AuthManagerCore.Application, []}
     ]
   end
 
