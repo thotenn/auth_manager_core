@@ -2,7 +2,7 @@ defmodule AuthManager.Accounts.Guardian do
   @moduledoc """
   Implementación de Guardian para la autenticación basada en JWT.
   """
-  use Guardian, otp_app: :auth_manager
+  use Guardian, otp_app: :auth_manager_core
 
   alias AuthManager.Accounts.UserService
 

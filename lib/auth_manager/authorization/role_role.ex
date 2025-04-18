@@ -48,7 +48,7 @@ defmodule AuthManager.Authorization.RoleRole do
     child_id = get_field(changeset, :child_role_id)
 
     if parent_id && child_id do
-      repo = Application.get_env(:auth_manager, :repo)
+      repo = Application.get_env(:auth_manager_core, :repo)
 
       # Comprobar si el rol hijo es ya un ancestro del rol padre
       parent_ancestors = Role.get_all_parent_roles(repo, parent_id)

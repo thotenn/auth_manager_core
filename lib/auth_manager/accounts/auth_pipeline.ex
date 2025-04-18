@@ -3,7 +3,7 @@ defmodule AuthManager.Accounts.AuthPipeline do
   Pipeline para la autenticación en aplicaciones Phoenix.
   """
   use Guardian.Plug.Pipeline,
-    otp_app: :auth_manager,
+    otp_app: :auth_manager_core,
     module: AuthManager.Accounts.Guardian,
     error_handler: AuthManager.Accounts.AuthErrorHandler
 
