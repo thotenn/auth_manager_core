@@ -1,4 +1,4 @@
-defmodule AuthManager.Migrations.CreateRolePermissions do
+defmodule AuthManagerCore.Repo.Migrations.CreateRolePermissions do
   use Ecto.Migration
 
   def change do
