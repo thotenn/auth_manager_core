@@ -8,7 +8,7 @@ defmodule AuthManager.MixProject do
     [
       app: :auth_manager,
       version: @version,
-      elixir: "~> 1.15",
+      elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
@@ -34,11 +34,11 @@ defmodule AuthManager.MixProject do
   defp deps do
     [
       # Phoenix Framework (última versión)
-      {:phoenix, "~> 1.7.10"},
-      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix, "~> 1.8.0-rc.0"},
+      {:phoenix_ecto, "~> 4.4.0"},
 
       # Base de datos
-      {:ecto_sql, "~> 3.10"},
+      {:ecto_sql, "~> 3.11.0"},
       {:postgrex, ">= 0.0.0", optional: true},
 
       # Autenticación
