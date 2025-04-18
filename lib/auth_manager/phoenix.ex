@@ -2,9 +2,9 @@ defmodule AuthManager.Phoenix do
   @moduledoc """
   Funciones para integrar AuthManager con Phoenix.
 
-  Función para utilizar en un controller de Phoenix para requerir autenticación.
+  ## Para controllers
 
-  ## Ejemplo
+  Función para utilizar en un controller de Phoenix para requerir autenticación.
 
   ```elixir
   defmodule MyAppWeb.UserController do
@@ -17,6 +17,35 @@ defmodule AuthManager.Phoenix do
       # Solo usuarios autenticados pueden acceder aquí
       render(conn, "index.html")
     end
+  end
+  ```
+
+  ## Para routers
+
+  Función para utilizar en un router de Phoenix para añadir rutas de autenticación.
+
+  ```elixir
+  defmodule MyAppWeb.Router do
+    use MyAppWeb, :router
+    use AuthManager.Phoenix, :router
+
+    # ... otras configuraciones
+
+    # Añade rutas de autenticación estándar (login, logout, registro, etc.)
+    auth_routes()
+  end
+  ```
+
+  ## Para views
+
+  Función para utilizar en un view de Phoenix para añadir helpers de autenticación.
+
+  ```elixir
+  defmodule MyAppWeb.LayoutView do
+    use MyAppWeb, :view
+    use AuthManager.Phoenix, :view
+
+    # Ahora puede usar funciones como `logged_in?` y `current_user` en sus templates
   end
   ```
   """
@@ -57,23 +86,6 @@ defmodule AuthManager.Phoenix do
     end
   end
 
-  @doc """
-  Función para utilizar en un router de Phoenix para añadir rutas de autenticación.
-
-  ## Ejemplo
-
-  ```elixir
-  defmodule MyAppWeb.Router do
-    use MyAppWeb, :router
-    use AuthManager.Phoenix, :router
-
-    # ... otras configuraciones
-
-    # Añade rutas de autenticación estándar (login, logout, registro, etc.)
-    auth_routes()
-  end
-  ```
-  """
   defmacro __using__(:router) do
     quote do
       import AuthManager.Phoenix
@@ -135,47 +147,25 @@ defmodule AuthManager.Phoenix do
     end
   end
 
-  @doc """
-  Función para utilizar en un view de Phoenix para añadir helpers de autenticación.
-
-  ## Ejemplo
-
-  ```elixir
-  defmodule MyAppWeb.LayoutView do
-    use MyAppWeb, :view
-    use AuthManager.Phoenix, :view
-
-    # Ahora puede usar funciones como `logged_in?` y `current_user` en sus templates
-  end
-  ```
-  """
   defmacro __using__(:view) do
     quote do
-      @doc """
-      Comprueba si hay un usuario autenticado en la conexión.
-      """
+      # Comprueba si hay un usuario autenticado en la conexión.
       def logged_in?(conn) do
         conn.assigns[:current_user] != nil
       end
 
-      @doc """
-      Obtiene el usuario autenticado actual de la conexión.
-      """
+      # Obtiene el usuario autenticado actual de la conexión.
       def current_user(conn) do
         conn.assigns[:current_user]
       end
 
-      @doc """
-      Comprueba si el usuario actual tiene un permiso específico.
-      """
+      # Comprueba si el usuario actual tiene un permiso específico.
       def has_permission?(conn, permission) do
         user = current_user(conn)
         user && AuthManager.can?(user, permission)
       end
 
-      @doc """
-      Comprueba si el usuario actual tiene un rol específico.
-      """
+      # Comprueba si el usuario actual tiene un rol específico.
       def has_role?(conn, role) do
         user = current_user(conn)
         user && AuthManager.has_role?(user, role)

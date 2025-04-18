@@ -125,7 +125,7 @@ defmodule AuthManager.Tools.DateTools do
     |> ensure_valid_date()
   end
 
-  defp ensure_valid_date(%{year: year, month: month, day: day} = date) do
+  defp ensure_valid_date(%{year: _year, month: _month, day: day} = date) do
     days_in_month = Date.days_in_month(%{date | day: 1})
 
     if day > days_in_month do

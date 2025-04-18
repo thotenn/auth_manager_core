@@ -9,13 +9,9 @@ defmodule AuthManager.Accounts.AuthPipeline do
 
   # Si no existe un error handler, el plug simplemente asigna nil a current_user
 
-  @doc """
-  Plug que verifica y carga el usuario actual a partir del token de autorización.
-  """
-  plug Guardian.Plug.VerifyHeader, realm: "Bearer"
+  # Plug que verifica y carga el usuario actual a partir del token de autorización.
+  plug Guardian.Plug.VerifyHeader, scheme: "Bearer"
 
-  @doc """
-  Plug que carga el recurso (usuario) basado en el token previamente verificado.
-  """
+  # Plug que carga el recurso (usuario) basado en el token previamente verificado.
   plug Guardian.Plug.LoadResource, allow_blank: true
 end

@@ -30,9 +30,7 @@ defmodule AuthManager.Authorization.RoleRole do
         name: :role_roles_parent_role_id_child_role_id_index)
   end
 
-  @doc """
-  Valida que un rol no pueda ser su propio padre.
-  """
+  # Valida que un rol no pueda ser su propio padre.
   defp validate_different_roles(changeset) do
     parent_id = get_field(changeset, :parent_role_id)
     child_id = get_field(changeset, :child_role_id)
@@ -44,9 +42,7 @@ defmodule AuthManager.Authorization.RoleRole do
     end
   end
 
-  @doc """
-  Valida que no existan dependencias circulares entre roles.
-  """
+  # Valida que no existan dependencias circulares entre roles.
   defp validate_no_circular_dependency(changeset) do
     parent_id = get_field(changeset, :parent_role_id)
     child_id = get_field(changeset, :child_role_id)

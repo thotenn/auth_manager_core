@@ -5,7 +5,6 @@ defmodule AuthManager.Accounts.Guardian do
   use Guardian, otp_app: :auth_manager
 
   alias AuthManager.Accounts.UserService
-  alias AuthManager.Core.Config
 
   @doc """
   Función utilizada para extraer el identificador del recurso de un subject.

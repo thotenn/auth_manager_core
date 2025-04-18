@@ -40,9 +40,7 @@ defmodule AuthManager.Authorization.Role do
     |> unique_constraint(:slug)
   end
 
-  @doc """
-  Genera un slug basado en el nombre si no se proporciona.
-  """
+  # Genera un slug basado en el nombre si no se proporciona.
   defp generate_slug_if_empty(changeset) do
     case get_change(changeset, :slug) do
       nil ->
